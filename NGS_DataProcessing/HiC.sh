@@ -1,5 +1,5 @@
 #!/bin/bash
-# Precessing HiC data
+# Processing HiC data
 # Should be PAIRED-end sequencing
 # e.g.: ./HiC.sh --restriction_site "AAGCTT" --thread 5 --sample SRR639029 --trimmomatic_loc ~/tools/bin/trimmomatic-0.36.jar --Remove_Pairends_InSameChr_loc ../../tools/bin/Remove_Pairends_InSameChr.py --genome ../Genome/GRCh38/GRCh38.p3.fa --genome_index_loc ../Genome/GRCh38/GRCh38_p3_ref --step 123456
 sample=""
@@ -82,7 +82,7 @@ EOF
 while true; do
 	case "$1" in
 		-h|--help) echo "$help" ; exit 0;shift ;;
-		-s|--step) while [[ $i > 0 ]]; do
+		-s|--step) i=$2; while [[ $i > 0 ]]; do
 			STEP[$[ $i%10 ]]=1;
 			i=$[ $i/10 ];
 			done
@@ -221,7 +221,8 @@ fi
 
 # step 7:use Homer to filter noise in Hi-C data
 if [[ ${STEP[7]} == 1 ]]; then
-makeTagDirectory "Homer_"$sample"_filtered" $sam_1,$sam_2 -restrictionSite $restriction_site -genome $genome_index_loc -removePEbg -removeSelfLigation 2>>"Homer_"$sample"_filtered/"$sample"_nohup_filtered.out"
+mkdir "Homer_"$sample"_filtered"
+makeTagDirectory "Homer_"$sample"_filtered" $sam_1,$sam_2 -restrictionSite $restriction_site -genome $genome -removePEbg -removeSelfLigation 2>>"Homer_"$sample"_filtered/"$sample"_nohup_filtered.out"
 Homer_dir="Homer_"$sample"_filtered"
 fi
 # step 8:use Homer to get interaction map
