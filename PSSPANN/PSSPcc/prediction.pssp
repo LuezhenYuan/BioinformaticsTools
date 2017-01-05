@@ -1,0 +1,15 @@
+# PSSPinfo
+version	1.0
+# DataSettings
+SecondarayStructureInData	true
+dataformat	fasta
+# ANNTopology
+HiddenLayerNode	2,2
+HiddenLayerNumber	2
+InputLayerNode	374
+biasNode	true
+# Prediction
+Prediction	true
+WeightAvailable	true
+WeightbiasAvailable	true
+threshold	0.3
