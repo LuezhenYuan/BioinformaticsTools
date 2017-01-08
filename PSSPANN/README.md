@@ -3,11 +3,13 @@
 ## Install on Ubuntu (or other linux)
 1. make
 2. sudo make install
+
 Since I'm new to makefile, you could modify it if the _make_ is not working well.
 
 ## How to use PSSP-proto
 1. ./PSSP-proto
 2. PSSP-proto
+
 ## How to use PSSPcc
 1. ./PSSPcc -h
 2. PSSPcc -h
