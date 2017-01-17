@@ -33,7 +33,7 @@ void PSSPANNdata::read_fasta_file(string file_name){
             if(tag_is_seq){m_current_sample++;
             if(m_current_sample>0) m_terminal_site[m_current_sample]=m_terminal_site[m_current_sample-1];
             else m_terminal_site[0]=-1;//when site-4, the amino acid is 5
-
+            protein_name.push_back(line);
             }
 
 
@@ -339,7 +339,7 @@ bool* PSSP_from_output_to_result(const float* ANNoutput,float t,const PSSPANNdat
     return current_output;
 }
 
-void print_ss(const bool* protein,int length,string file){
+void print_ss(PSSPANNdata* data,const bool* protein,int length,string file){//Change it to friend
     if(file=="")
     {
         for(int i=0;i<length/2;i++){
@@ -351,12 +351,17 @@ void print_ss(const bool* protein,int length,string file){
     }
     else{
         ofstream out(file);
-        for(int i=0;i<length/2;i++){
-            if(protein[2*i]==true) out<<"H";
-            else if(protein[2*i+1]==true) out<<"E";
-            else out<<"C";
+        int j=0;
+        for(int i=0;i<data->m_protein_num;i++){
+            out<<data->protein_name[i]<<"\n";
+            for(;j<=data->m_terminal_site[i];j++){
+                if(protein[2*j]==true) out<<"H";
+                else if(protein[2*j+1]==true) out<<"E";
+                else out<<"C";
+            }
+            out<<"\n";
         }
-        out<<endl;
+        //out<<endl;
         out.close();
     }
 }

@@ -58,83 +58,6 @@ void test_aa_coding(const bool* data,int length){
     cout<<endl;
 }
 
-void test_ANNCore_Training(string file_name,float speed,int iteration){
-
-    int m_topology[]={242,2,2};
-    float* weight;float* weight_bias;bool* result_store;
-    float threshold;
-    string out_weight;cout<<"out_weight:";cin>>out_weight;
-    string out_weight_bias;cout<<"out_weight_bias:";cin>>out_weight_bias;
-    PSSPANNdata training(file_name);
-    threshold=ANN_Training_bool<PSSPANNdata>(&training,m_topology,3,
-                                   PSSP_threshold_calculator,
-                                   PSSP_from_output_to_result,
-                                   weight,weight_bias,result_store,
-                                   0.1,iteration,
-                                   false,
-                                   false,NULL,
-                                   0.1,true,speed,
-                                   0,0,
-                                   MY_weight_ini
-                                   );
-    cout<<"threshold"<<threshold<<endl;
-    print_array_file<float*>(weight,242*2+2*2,out_weight);
-    print_array_file<float*>(weight_bias,2+2,out_weight_bias);
-}
-void test_ANNCore_Training_Validation(string file1,string file2,float speed,int iteration){
-
-    int m_topology[]={242,2,2};
-    float* weight;float* weight_bias;bool* result_store;
-    float threshold;
-    string out_weight;cout<<"out_weight:";cin>>out_weight;
-    string out_weight_bias;cout<<"out_weight_bias:";cin>>out_weight_bias;
-    PSSPANNdata training(file1);
-    PSSPANNdata validate(file2);
-    threshold=ANN_Training_bool<PSSPANNdata>(&training,m_topology,3,
-                                   PSSP_threshold_calculator,
-                                   PSSP_from_output_to_result,
-                                   weight,weight_bias,result_store,
-                                   0.1,iteration,
-                                   false,
-                                   true,&validate,
-                                   0.1,true,speed,
-                                   0,0,
-                                   MY_weight_ini
-                                   );
-    cout<<"threshold"<<threshold<<endl;
-    print_array_file<float*>(weight,242*2+2*2,out_weight);
-    print_array_file<float*>(weight_bias,2+2,out_weight_bias);
-}
-void test_ANNCore_Prediction(string file,int threshold){
-
-    int m_topology[]={242,2,2};
-    float* weight;float* weight_bias;bool* result_store;
-    string out_weight;cout<<"weight:";cin>>out_weight;
-    string out_weight_bias;cout<<"weight_bias:";cin>>out_weight_bias;
-    string out_prediction;cout<<"out_prediction:";cin>>out_prediction;
-    PSSPANNdata prediction(file);
-    read_file_in_float(weight,out_weight,242*2+2*2);
-    read_file_in_float(weight_bias,out_weight_bias,2+2);
-    ANN_Training_bool<PSSPANNdata>(&prediction,m_topology,3,
-                                   PSSP_threshold_calculator,
-                                   PSSP_from_output_to_result,
-                                   weight,weight_bias,result_store,
-                                   threshold,1,
-                                   true,
-                                   false,NULL,
-                                   0.1,true,0,
-                                   242*2+2*2,2+2
-                                   );
-    //print_array_file<bool*>(result_store,prediction.data_size()*2,"out_predict_see.txt");
-    cout<<"Q3:"<<prediction.Q3(result_store)<<endl;
-    float* CC;
-    CC=prediction.CC(result_store);
-    printf("CC_H:%.6f\n",CC[0]);printf("CC_E:%.6f\n",CC[1]);printf("CC_C:%.6f\n",CC[2]);
-    print_ss(result_store,prediction.data_size()*2,out_prediction);
-    free(CC);free(weight);free(weight_bias);free(result_store);
-
-}
-
 void read_file_in_float(float*& array,string file,int length){
     ifstream in(file);
     array=(float*)malloc(sizeof(float)*length);
@@ -148,29 +71,6 @@ void read_file_in_float(float*& array,string file,int length){
     in.close();
 }
 
-void version_1(){
-    float speed=0.3;
-    float threshold=0.9;
-    int tag=0;
-    string file1;
-    cout<<"Training[0] OR Prediction[1]:";cin>>tag;
-    cout<<"Fasta file:";cin>>file1;
-    int iteration=1000;
-    string file2;
-    if(tag==0){
-        cout<<"Speed:";cin>>speed;
-        cout<<"Iteration:";cin>>iteration;
 
-        cout<<"Validation(If no, [no]):";cin>>file2;
-        if(file2=="no")
-            try_cpp::test_ANNCore_Training(file1,speed,iteration);
-        else
-            try_cpp::test_ANNCore_Training_Validation(file1,file2,speed,iteration);
-    }
-    else if(tag==1){
-        cout<<"threshold:";cin>>threshold;
-        try_cpp::test_ANNCore_Prediction(file1,threshold);
-    }
-}
 }
 

@@ -47,6 +47,7 @@ X others
 blank
 */
 #include <string>
+#include <vector>
 using namespace std;
 class PSSPANNdata{
 private:
@@ -59,6 +60,7 @@ private:
     void read_fasta_file(string file_name);
     void read_fasta_prediction_file(string file_name);
     int locate_protein(int pos) const;
+    vector<string> protein_name;
 public:
     PSSPANNdata(string training_file,bool has_ss=true);//if has ss, then ss stored in m_output, else, nothing in m_output
     //PSSPANNdata(string prediction_file,bool prediction);
@@ -74,11 +76,12 @@ public:
     float* CC(bool*) const;//compared to m_output, correlation coefficient
     float* PSS_HEC() const;//show the percent of H/E/C in this sample
     friend bool* PSSP_from_output_to_result(const float*,float,const PSSPANNdata* const);//need m_terminal_site
+    friend void print_ss(PSSPANNdata* data,const bool*,int length,string file);
 };
 int fasta_file_length(string file_name);
 int fasta_data_size(string file_name);
 float PSSP_threshold_calculator(const PSSPANNdata* const,const float*);
 bool* PSSP_from_output_to_result(const float*,float,const PSSPANNdata* const);
-void print_ss(const bool*,int length,string file="");
+void print_ss(PSSPANNdata* data,const bool*,int length,string file="");
 
 #endif // PSSPANNDATA_H_INCLUDED

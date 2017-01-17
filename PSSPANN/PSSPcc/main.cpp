@@ -180,7 +180,7 @@ int main(int argc,char* argv[])
                                        0.1,biasNode,0,
                                        weight_length,weight_bias_length
                                        );
-        print_ss(result_store,prediction.data_size()*2,vm["outputprefix"].as<std::string>() + "_prediction");
+        print_ss(&prediction,result_store,prediction.data_size()*2,vm["outputprefix"].as<std::string>() + "_prediction");
     }
     else if(settings.find("Test")!=settings.end()){
         //test
@@ -207,7 +207,7 @@ int main(int argc,char* argv[])
         float* CC;
         CC=test.CC(result_store);
         printf("CC_H:%.6f\n",CC[0]);printf("CC_E:%.6f\n",CC[1]);printf("CC_C:%.6f\n",CC[2]);
-        print_ss(result_store,test.data_size()*2,vm["outputprefix"].as<std::string>() + "_test");
+        print_ss(&test,result_store,test.data_size()*2,vm["outputprefix"].as<std::string>() + "_test");
         free(CC);free(weight);free(weight_bias);free(result_store);
     }
     else{

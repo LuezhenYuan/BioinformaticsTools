@@ -10,9 +10,7 @@ void print_bool_array(const bool* data,int length);
 void try_PSSPANNdata(string file_name);
 void test_aa_coding(const bool* data,int length);
 
-void test_ANNCore_Training(string file_name,float speed=0.3,int iteration=1000);
-void test_ANNCore_Training_Validation(string file1,string file2,float speed=0.3,int iteration=1000);
-void test_ANNCore_Prediction(string file,int threshold);
+
 template <typename T>
 void print_array(T* t,int length){
     for(int i=0;i<length;i++) cout<<t[i]<<endl;
@@ -27,6 +25,6 @@ void print_array_file(T t,int length,string file){
 }
 
 void read_file_in_float(float*& array,string file,int length);
-void version_1();
+
 }
 #endif // TRY_H_INCLUDED
