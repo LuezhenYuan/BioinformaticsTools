@@ -1,4 +1,4 @@
-SUB_DIR := PSSPcc PSSP-proto
+SUB_DIR := PSSPcc PSSP-proto PSSP-gui
 subsystem:
 	@for n in $(SUB_DIR); do make -C $$n ; done
 clean:
