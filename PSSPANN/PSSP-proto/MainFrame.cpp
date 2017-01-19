@@ -49,6 +49,7 @@ MainFrame::MainFrame(wxWindow* parent,wxWindowID id)
 	wxBoxSizer* BoxSizer1;
 
 	Create(parent, wxID_ANY, _("PSSP-proto"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
+	SetFocus();
 	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
 	StaticText1 = new wxStaticText(this, ID_STATICTEXT1, _("DataSettings"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT1"));
 	BoxSizer1->Add(StaticText1, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 10);
@@ -94,8 +95,8 @@ MainFrame::MainFrame(wxWindow* parent,wxWindowID id)
 	BoxSizer2->Add(StaticText11, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	Choice4 = new wxChoice(this, ID_CHOICE4, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE4"));
 	Choice4->SetSelection( Choice4->Append(_("Training")) );
-	Choice4->Append(_("Prediction"));
 	Choice4->Append(_("Test"));
+	Choice4->Append(_("Prediction"));
 	BoxSizer2->Add(Choice4, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer1->Add(BoxSizer2, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
