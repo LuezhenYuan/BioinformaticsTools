@@ -7,7 +7,7 @@
 
 ![Prediction settings](figure/PSSP-gui_main03.png)
 
-![Analysis type](PSSP-gui_main04.png)
+![Analysis type](figure/PSSP-gui_main04.png)
 
 ## Train window
 ![Train window](figure/PSSP-gui_train01.png)
@@ -22,5 +22,3 @@
 ![Test window](figure/PSSP-gui_test01.png)
 
 ![Test result](figure/PSSP-gui_test02.png)
-
-
