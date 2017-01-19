@@ -28,7 +28,7 @@ bool PSSP_protoApp::OnInit()
     	SetTopWindow(&Dlg);
     	Dlg.wxsmain_frame=false;
     	Dlg.ShowModal();
-    	//wxsOK = false;
+    	wxsOK = false;
         if (Dlg.wxsmain_frame){
             MainFrame* main_frm = new MainFrame(0);
             main_frm->Show(true);

@@ -5,10 +5,15 @@ PSSP-proto| Generate setting files for PSSPcc
 PSSPcc | Computation core for the protein secondary structure prediction, training, and testing. Used for batch running.
 PSSP-gui| A GUI version for the PSSP-proto and PSSPcc
 
+## Prepare for installation
+1. sudo apt-get install libboost-all-dev
+2. Go to /usr/lib/ and see whether there are "libboost_program_options.so", "libboost_system.so", "libboost_thread.so". If you have some related files, like "libboost_system.so.1.58.0", you could make a link named "libboost_system.so", in order to let -lboost_system find it.(ln -s libboost_system.so libboost_system.so.1.58.0)
+3. sudo apt-get install wx-common
 
 ## Install on Ubuntu (or other linux)
 1. make
 2. sudo make install
+
 Since I'm new to makefile, you could modify it if the _make_ is not working well.
 
 ## How to use PSSP-proto
