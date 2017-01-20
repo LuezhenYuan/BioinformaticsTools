@@ -281,11 +281,11 @@ bool* PSSP_from_output_to_result(const float* ANNoutput,float t,const PSSPANNdat
     int protein=0;//locate protein
     //1. float* to bool* use a threshold
     for(int j=0;j<length/2;j++){
-        if(ANNoutput[2*j]-t>=ANNoutput[2*j+1]){
+        if(ANNoutput[2*j]>ANNoutput[2*j+1] && ANNoutput[2*j]>t){
             current_output[2*j]=true;
             current_output[2*j+1]=false;
         }
-        else if(ANNoutput[2*j+1]-t>=ANNoutput[2*j]){
+        else if(ANNoutput[2*j+1]>ANNoutput[2*j] && ANNoutput[2*j+1]>t){
             current_output[2*j+1]=true;
             current_output[2*j]=false;
         }
