@@ -1,6 +1,16 @@
 # Study on the Protein Secondary Prediction Method
 
 ## Result
+__UPDATE: Change assign method from predict value to secondary structure__
+
+ID | Q3
+---|---
+2  |0.596172
+13 |0.601203
+15 |0.607258
+
+_threshold:0.39,0.36,0.39 for ID=1,13,15_
+
 ID | Hidden Layer |Units | Q3(PNAS1989) | Q3(PSSPcc)
 ---|--------------|------|--------------|-----------
 1  |0             |0     |0.623          |0.558062
@@ -339,6 +349,6 @@ id | threshold | Q3
 
 ## Conclusion
 1. Since PSSPcc's Q3 is lower than PNAS(1989), It's likely that the protein available at that time has close distance. Here, distance means they share sequence similarity.
-2. The accuracy of ANN for predict __any__ protein secondary structure is aroung 0.57. If predict the secondary structure of family of proteins, it's likely that the accuracy can reach very high to around 0.8.
+2. The accuracy of ANN for predict __any__ protein secondary structure is around 0.6(__UPDATE: Change assign method from predict value to secondary structure__). If predict the secondary structure of family of proteins, it's likely that the accuracy can reach very high to around 0.8.
 3. According to the specific goal for prediction, one should choose proper training set (and validate set). If one want to predict a specific family of protein, use proteins similar as training. If the task is to predict any proteins, one should select proteins randomly as training set.
 4. The random weight on ANN will give 0.45 accuracy(Q3).

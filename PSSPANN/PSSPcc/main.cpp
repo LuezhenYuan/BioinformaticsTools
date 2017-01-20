@@ -158,8 +158,8 @@ int main(int argc,char* argv[])
     for(int i=1;i<HiddenLayerNumber+2;i++){
         weight_bias_length+=topology[i];
     }
-    try_cpp::print_array_file<float*>(weight,weight_length,vm["outputprefix"].as<std::string>() + "_weight");
-    try_cpp::print_array_file<float*>(weight_bias,weight_bias_length,vm["outputprefix"].as<std::string>() + "_weight_bias");
+    try_cpp::print_array_file<float*>(weight,weight_length,vm["outputprefix"].as<std::string>() + "_weight.txt");
+    try_cpp::print_array_file<float*>(weight_bias,weight_bias_length,vm["outputprefix"].as<std::string>() + "_weight_bias.txt");
     delete training;
     if(Validation) delete validate;
     }
@@ -180,7 +180,7 @@ int main(int argc,char* argv[])
                                        0.1,biasNode,0,
                                        weight_length,weight_bias_length
                                        );
-        print_ss(&prediction,result_store,prediction.data_size()*2,vm["outputprefix"].as<std::string>() + "_prediction");
+        print_ss(&prediction,result_store,prediction.data_size()*2,vm["outputprefix"].as<std::string>() + "_prediction.txt");
     }
     else if(settings.find("Test")!=settings.end()){
         //test
@@ -207,7 +207,7 @@ int main(int argc,char* argv[])
         float* CC;
         CC=test.CC(result_store);
         printf("CC_H:%.6f\n",CC[0]);printf("CC_E:%.6f\n",CC[1]);printf("CC_C:%.6f\n",CC[2]);
-        print_ss(&test,result_store,test.data_size()*2,vm["outputprefix"].as<std::string>() + "_test");
+        print_ss(&test,result_store,test.data_size()*2,vm["outputprefix"].as<std::string>() + "_test.txt");
         free(CC);free(weight);free(weight_bias);free(result_store);
     }
     else{
